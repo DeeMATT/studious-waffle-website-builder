@@ -31,6 +31,10 @@ DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+DOWNLOADED_ZIPPED_FILES_DIR = f'{BASE_DIR}/downloaded_templates/'
+EXTRACTED_FILES_DIR = f'{BASE_DIR}/extracted_files/'
 
 # Application definition
 
@@ -42,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'templates',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +79,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'page_builder.wsgi.application'
+ASGI_APPLICATION = 'page_builder.asgi.application'
 
 
 # Database
@@ -84,6 +91,21 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
+
+CORS_EXPOSE_HEADERS = [
+    'Access-Control-Allow-Methods',
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers',
+    'Access-Control-Max-Age'
+]
 
 
 # Password validation
@@ -126,3 +148,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# s3 bucket configuration
+BUCKET_ACCESS_KEY_ID = os.getenv('BUCKET_ACCESS_KEY_ID')
+BUCKET_SECRET_KEY = os.getenv('BUCKET_SECRET_KEY')
+BUCKET_REGION_NAME = os.getenv('BUCKET_REGION_NAME')
+BUCKET_NAME = os.getenv('BUCKET_NAME')
+BUCKET_ENDPOINT_URL = os.getenv('BUCKET_ENDPOINT_URL')
