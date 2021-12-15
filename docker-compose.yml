@@ -6,6 +6,6 @@ services:
     image: webpage-builder
     container_name: webpage-builder
     restart: always
-    command: ["daphne", "-b", "0.0.0.0", "-p", "9999", "config.asgi:application"]
+    command: ["daphne", "-b", "0.0.0.0", "-p", "9999", "page_builder.asgi:application"]
     ports:
       - 9999:9999
