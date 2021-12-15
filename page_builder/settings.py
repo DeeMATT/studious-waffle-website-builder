@@ -73,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'page_builder.wsgi.application'
+ASGI_APPLICATION = 'page_builder.asgi.application'
 
 
 # Database
