@@ -57,7 +57,7 @@ def upload_processed_template(request):
         if not bucket_endpoint.endswith('/'):
             bucket_endpoint = bucket_endpoint + '/'
         
-        template_url = f"{bucket_endpoint}{bucket_name}/{folder}"
+        template_url = f"{bucket_endpoint}{bucket_name}/{folder}/index.html"
         data = {
             "template_name": template_name,
             "template_url": template_url
