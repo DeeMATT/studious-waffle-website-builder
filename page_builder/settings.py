@@ -117,7 +117,7 @@ CORS_EXPOSE_HEADERS = [
 ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
-    "host",
+    "Host",
 ]
 
 
