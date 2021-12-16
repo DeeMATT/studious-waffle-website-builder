@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -113,6 +114,10 @@ CORS_EXPOSE_HEADERS = [
     'Access-Control-Allow-Origin',
     'Access-Control-Allow-Headers',
     'Access-Control-Max-Age'
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "host",
 ]
 
 
