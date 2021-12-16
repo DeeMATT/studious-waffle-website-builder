@@ -10,6 +10,8 @@ COPY . /opt/website-builder-api
 WORKDIR /opt/website-builder-api
 
 RUN pip3 install -r /opt/website-builder-api/requirements.txt
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
 
 ENV API_PORT=9999
 EXPOSE $API_PORT
