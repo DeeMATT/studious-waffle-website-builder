@@ -7,9 +7,23 @@ import shutil
 from django.conf import settings
 from os import listdir
 from os.path import isfile, join, abspath
+from .models import Template
 import logging
 # Get an instance of the logger
 logger = logging.getLogger(__name__)
+
+
+def record_template(name, url):
+    try:
+        Template.objects.create(
+            name=name,
+            url=url,
+        )
+        return True
+    except Exception as e:
+        logger.error("create_template@Error")
+        logger.error(e)
+        return False
 
 
 def delete_downloaded_template(file):

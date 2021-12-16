@@ -11,7 +11,8 @@ from .validatezippedfilecontent import ValidateZippedFileContent
 from .module import (
     generateLinearDictionaryOfTemplate,
     uploadFileToLocal,
-    delete_dir
+    delete_dir,
+    record_template
 )
 from .serializer import TemplateSerializer
 from .remotestorage import upload_file_to_bucket
@@ -58,9 +59,16 @@ def upload_processed_template(request):
             bucket_endpoint = bucket_endpoint + '/'
         
         template_url = f"{bucket_endpoint}{bucket_name}/{folder}index.html"
+
+        # record template to db
+        record_template(template_name, template_url)
+
         data = {
             "template_name": template_name,
             "template_url": template_url
         }
         
         return Response(data, status=status.HTTP_200_OK)
+
+    else:
+        return Response(serialize_data.errors, status=status.HTTP_400_BAD_REQUEST)
