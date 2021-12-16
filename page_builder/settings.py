@@ -100,6 +100,14 @@ FILE_UPLOAD_HANDLERS = [
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False
 
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "POST",
+    "PUT",
+]
+
 CORS_EXPOSE_HEADERS = [
     'Access-Control-Allow-Methods',
     'Access-Control-Allow-Origin',
